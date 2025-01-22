@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<header class="cabecalho">
+    <nav class="cabecalho__menu">
+        <h1 class="cabecalho__menu_link">PrimeStone </h1>
+    </nav>
+</header>
+<main class="apresentacao-esquerda">
+    <section class="apresentacao__conteudo">
+        <h1 class="apresentacao__conteudo__titulo ">Construindo o <strong class="titulo-destaque">Futuro</strong>,<br>
+            Pedra por Pedra.
+        </h1>
+        <div class="login">
+            <form class="apresentacao__login" th:method="post" th:action="@{/login}" th:object="${loginDto}">
+          <span class="login__inputspan">
+            <label for="login" class="login__label">Email</label>
+            <input type="email" name="email" id="email" th:field="*{email}" />
+          </span>
+                <span class="login__inputspan">
+            <label for="senha" class="login__label">Senha</label>
+            <input type="password" id="senha" name="senha" th:field="*{senha}" />
+          </span>
+
+                <button class="login__submit" type="submit" >Entrar</button>
+
+
+                <span class="login__span">Nao tem uma conta? <a href="#">Sign up</a></span>
+
+                <div th:if="${param.erro}" class="alert alerta-error" style="width: 100%;" role="alert">
+                    <span class="mensagem">Erro ao realizar login do usuário!</span>
+                </div>
+
+                <div th:if="${param.logout}" class="alert alerta-info" role="alert">
+                    <span class="mensagem">Logout realizado com sucesso!</span>
+                </div>
+            </form>
+
+        </div>
+
+    </section>
+    <img class="apresentacao_foto" th:src="@{/assets/PrimeStone.png}" alt="Foto da PrimeStone">
+</main>
+</body>
+
+</html>
